@@ -21,4 +21,12 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('app/', include('app.urls')),
+    path('challenge-management/', include('challenge_management.urls')),
+    path('learningpath-management/', include('learningpath_management.urls')),
+    path('gamifiedcourse-management/', include('gamifiedcourse_management.urls')),
+    path('job-management/', include('job_management.urls')),
+    path('gamification-management/', include('gamification_management.urls')),
+    path('notification-management/', include('notification_management.urls')),
+    path('recommendation/', include('recommendation.urls')),
+    path('analytics/', include('analytics.urls')),
 ]

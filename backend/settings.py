@@ -41,6 +41,14 @@ INSTALLED_APPS = [
     'djoser',
     "accounts",
     "app",
+    "challenge_management",
+    "learningpath_management",
+    "gamifiedcourse_management",
+    "job_management",
+    "gamification_management",
+    "notification_management",
+    "recommendation",
+    "analytics",
 
 ]
 
