@@ -1,12 +1,12 @@
 from django.db import models
 
-from accounts.models import Analyst
+from accounts.models import User
 from challenge_management.models import Challenge
 # Create your models here.
 
 
 class ChallengeAnalytics(models.Model):
-    analyst = models.ForeignKey(Analyst, on_delete=models.PROTECT)
+    analyst = models.ForeignKey(User, on_delete=models.PROTECT)
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
     num_attempts = models.IntegerField(default=0)
     num_completions = models.IntegerField(default=0)
@@ -26,7 +26,7 @@ class ChallengeAnalytics(models.Model):
 
 
 class Leaderboard(models.Model):
-    analyst = models.ForeignKey(Analyst, on_delete=models.CASCADE)
+    analyst = models.ForeignKey(User, on_delete=models.CASCADE)
     challenge = models.OneToOneField(Challenge, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField()

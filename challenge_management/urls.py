@@ -1,5 +1,40 @@
-from django.urls import path, include
+from django.urls import path
+from .views import BankOfQuestionsList, BankQuestionAPIView, ChallengeCreateView, DraftCreateView, DraftDetailAPIView, DraftListAPIView, DraftQuestionCreateAPIView, DraftQuestionUpdateView, DraftQuestionView, DraftSolutionListCreateView, DraftSolutionUpdateView, DraftSolutionView, DraftUpdateView, PlanningDetailAPIView, PlanningListAPIView, QuestionCreateAPIView, QuestionList, SolutionListCreateView, delete_draft, get_challenge_id, get_draft_id
 
 urlpatterns = [
-
+    path('challenges/create', ChallengeCreateView.as_view()),
+    path('challenges/<str:name>/get_id/',
+         get_challenge_id, name='get_challenge_id'),
+    path('questions/create', QuestionCreateAPIView.as_view(), name='question-create'),
+    path('question-challenge/', QuestionList.as_view(), name='question_list'),
+    path('solutions/', SolutionListCreateView.as_view(),
+         name='solution-list-create'),
+    path('plannings/', PlanningListAPIView.as_view(), name='planning-list'),
+    path('plannings/<int:pk>/', PlanningDetailAPIView.as_view(),
+         name='planning-detail'),
+    path('bankofquestions/', BankOfQuestionsList.as_view(),
+         name='bank-of-questions'),
+    path('bankofquestions/<str:bank_name>/questions/',
+         BankQuestionAPIView.as_view(), name='bank-questions-list'),
+    path('drafts/create', DraftCreateView.as_view()),
+    path('drafts/<str:name>/get_id/',
+         get_draft_id, name='get_draft_id'),
+    path('draftquestions/create', DraftQuestionCreateAPIView.as_view(),
+         name='draftquestion-create'),
+    path('draftsolutions/', DraftSolutionListCreateView.as_view(),
+         name='draftsolution-list-create'),
+    path('drafts/', DraftListAPIView.as_view(), name='draft-list'),
+    path('drafts/<int:pk>/', DraftDetailAPIView.as_view(),
+         name='draft-detail'),
+    path('drafts/<int:draft_id>/questions/',
+         DraftQuestionView.as_view(), name='draft_questions'),
+    path('drafts/<int:draft_id>/solution/',
+         DraftSolutionView.as_view(), name='draft_solution'),
+    path('drafts/delete/<int:pk>/', delete_draft, name='delete-draft'),
+    path('drafts/update/<int:pk>/',
+         DraftUpdateView.as_view(), name='draft-update'),
+    path('draftquestions/update/<int:pk>/',
+         DraftQuestionUpdateView.as_view(), name='draft-questions-update'),
+    path('draftsolutions/update/<int:draft_id>/',
+         DraftSolutionUpdateView.as_view(), name='draft-solutions-update'),
 ]

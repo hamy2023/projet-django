@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
-from accounts.models import User, Developer, Recruiter
+from accounts.models import User
 from challenge_management.models import Challenge
 
 # Create your models here.
@@ -18,8 +18,8 @@ class JobOffer(models.Model):
     job_challenge = models.OneToOneField(
         Challenge, on_delete=models.CASCADE, related_name='job_offers')
     recruiter = models.ForeignKey(
-        Recruiter, on_delete=models.PROTECT, related_name='recruiter',)
-    participants = models.ManyToManyField(Developer)
+        User, on_delete=models.PROTECT, related_name='recruiter',)
+    participants = models.ManyToManyField(User)
 
     def get_job_title(self):
         return self.job_title
@@ -73,9 +73,9 @@ class JobOffer(models.Model):
 
 class Interview(models.Model):
     interviewee = models.ForeignKey(
-        Developer, on_delete=models.CASCADE, related_name='interviews_attended', default=1)
+        User, on_delete=models.CASCADE, related_name='interviews_attended', default=1)
     interviewer = models.ForeignKey(
-        Recruiter, on_delete=models.CASCADE, related_name='interviews_conducted', default=1)
+        User, on_delete=models.CASCADE, related_name='interviews_conducted', default=1)
     scheduled_time = models.DateTimeField(null=True, blank=True)
     questions = models.TextField()
     completed = models.BooleanField(default=False)

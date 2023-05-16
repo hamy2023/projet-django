@@ -1,7 +1,7 @@
 from datetime import timezone
 from django.db import models
 
-from accounts.models import Admin, User
+from accounts.models import User
 
 # Create your models here.
 

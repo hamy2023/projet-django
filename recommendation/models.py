@@ -1,14 +1,15 @@
 from django.db import models
 
-from accounts.models import Analyst, Developer
+from accounts.models import User
 
 # Create your models here.
 
 
 class Recommendation(models.Model):
-    analyst = models.ForeignKey(Analyst, on_delete=models.CASCADE)
+    analyst = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='analyst')
     developer = models.ForeignKey(
-        Developer, on_delete=models.CASCADE, default="")
+        User, on_delete=models.CASCADE, default="")
     title = models.CharField(max_length=100)
     description = models.TextField()
     creation_time = models.DateTimeField(auto_now_add=True)

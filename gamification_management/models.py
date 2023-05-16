@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
-from accounts.models import Admin, User
+from accounts.models import User
 
 # Create your models here.
 
@@ -16,7 +16,6 @@ class Gamification(models.Model):
     min_eggs_per_learningpath = models.IntegerField(default=0)
     time_to_restore_life_system = models.DurationField(
         default=timedelta(days=2))
-    admin = models.OneToOneField(Admin, on_delete=models.PROTECT, default="")
 
     def set_badge_eggs(self, badge, eggs):
         self.badge_eggs[badge.id] = eggs

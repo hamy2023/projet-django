@@ -14,13 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
+from rest_framework_simplejwt import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
+urlpatterns = [  # grappelli URLS
+    path('admin/', admin.site.urls),
+    path('api/token/', TokenObtainPairView.as_view()),
+    path('api/token/refresh/', TokenRefreshView.as_view()),
+    path('api/token/verify/', TokenVerifyView.as_view()),
     path('app/', include('app.urls')),
+    path('accounts/', include('accounts.urls')),
     path('challenge-management/', include('challenge_management.urls')),
     path('learningpath-management/', include('learningpath_management.urls')),
     path('gamifiedcourse-management/', include('gamifiedcourse_management.urls')),
@@ -29,4 +34,4 @@ urlpatterns = [
     path('notification-management/', include('notification_management.urls')),
     path('recommendation/', include('recommendation.urls')),
     path('analytics/', include('analytics.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

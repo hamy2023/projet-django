@@ -1,0 +1,5 @@
+{% extends 'admin/change_list.html' %} {% block extrahead %} {{ block.super }}
+{{ calendar.media }} {% endblock %} {% block content %}
+<div id="calendar" class="fullcalendar"></div>
+{% endblock %} {% block extrajs %} {{ block.super }} {{ calendar.js }} {%
+endblock %}

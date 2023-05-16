@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
-from accounts.models import Admin, Developer
+from accounts.models import User
 
 # Create your models here.
 
@@ -10,9 +10,9 @@ from accounts.models import Admin, Developer
 class LearningPath(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    participants = models.ManyToManyField(
+    """ participants = models.ManyToManyField(
         Developer, related_name='participated_learningpaths')
-    admin = models.ForeignKey(Admin, on_delete=models.PROTECT)
+    admin = models.ForeignKey(Admin, on_delete=models.PROTECT) """
 
     def __str__(self):
         return self.name
